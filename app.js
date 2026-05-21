@@ -4,8 +4,7 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const { createClient } = supabase;
 const client = createClient(supabaseUrl, supabaseKey);
 
-const imagenDefault =
-  "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f";
+const imagenDefault = "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f";
 
 const productosDiv = document.getElementById("productos");
 const clientesDiv = document.getElementById("clientes");
@@ -14,25 +13,16 @@ const ventasDiv = document.getElementById("ventas");
 
 // PRODUCTOS
 async function cargarProductos() {
-  const { data, error } = await client
-    .from("productos")
-    .select("*")
-    .order("idproducto", { ascending: true });
+  const { data, error } = await client.from("productos").select("*").order("idproducto");
 
-  if (error) {
-    console.log(error);
-    alert("Error al cargar productos");
-    return;
-  }
+  if (error) return console.log(error);
 
   productosDiv.innerHTML = "";
 
-  data.forEach((p) => {
-    const imagen = p.imagen ? p.imagen : imagenDefault;
-
+  data.forEach(p => {
     productosDiv.innerHTML += `
       <div class="card">
-        <img src="${imagen}" alt="${p.descripcion}">
+        <img src="${p.imagen || imagenDefault}">
         <div class="card-content">
           <h3>${p.descripcion}</h3>
           <p class="price">$${Number(p.costo).toFixed(2)}</p>
@@ -51,31 +41,31 @@ async function cargarProductos() {
 }
 
 async function agregarProducto() {
-  const descripcion = prompt("Nombre del producto:");
-  const costo = prompt("Costo:");
-  const imagen = prompt("Link de imagen:");
-  const idproveedor = prompt("ID del proveedor:");
+  const descripcion = document.getElementById("productoDescripcion").value;
+  const costo = document.getElementById("productoCosto").value;
+  const imagen = document.getElementById("productoImagen").value;
+  const idproveedor = document.getElementById("productoProveedor").value;
 
   if (!descripcion || !costo || !idproveedor) {
-    alert("Completa los campos obligatorios.");
+    alert("Completa producto, costo e ID proveedor");
     return;
   }
 
-  const { error } = await client
-    .from("productos")
-    .insert([
-      {
-        descripcion,
-        costo: Number(costo),
-        imagen,
-        idproveedor: Number(idproveedor)
-      }
-    ]);
+  const { error } = await client.from("productos").insert([{
+    descripcion,
+    costo: Number(costo),
+    imagen,
+    idproveedor: Number(idproveedor)
+  }]);
 
   if (error) {
     console.log(error);
-    alert("Error al agregar producto");
+    alert("Error al guardar producto");
   } else {
+    document.getElementById("productoDescripcion").value = "";
+    document.getElementById("productoCosto").value = "";
+    document.getElementById("productoImagen").value = "";
+    document.getElementById("productoProveedor").value = "";
     cargarProductos();
   }
 }
@@ -94,12 +84,8 @@ async function editarProducto(id, descripcion, costo) {
     })
     .eq("idproducto", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al editar producto");
-  } else {
-    cargarProductos();
-  }
+  if (error) console.log(error);
+  else cargarProductos();
 }
 
 async function eliminarProducto(id) {
@@ -110,30 +96,19 @@ async function eliminarProducto(id) {
     .delete()
     .eq("idproducto", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al eliminar producto");
-  } else {
-    cargarProductos();
-  }
+  if (error) console.log(error);
+  else cargarProductos();
 }
 
 // CLIENTES
 async function cargarClientes() {
-  const { data, error } = await client
-    .from("cliente")
-    .select("*")
-    .order("idcliente", { ascending: true });
+  const { data, error } = await client.from("cliente").select("*").order("idcliente");
 
-  if (error) {
-    console.log(error);
-    alert("Error al cargar clientes");
-    return;
-  }
+  if (error) return console.log(error);
 
   clientesDiv.innerHTML = "";
 
-  data.forEach((c) => {
+  data.forEach(c => {
     clientesDiv.innerHTML += `
       <div class="item">
         <strong>${c.nombre}</strong><br>
@@ -153,23 +128,24 @@ async function cargarClientes() {
 }
 
 async function agregarCliente() {
-  const nombre = prompt("Nombre:");
-  const telefono = prompt("Teléfono:");
-  const direccion = prompt("Dirección:");
+  const nombre = document.getElementById("clienteNombre").value;
+  const telefono = document.getElementById("clienteTelefono").value;
+  const direccion = document.getElementById("clienteDireccion").value;
 
   if (!nombre || !telefono || !direccion) {
-    alert("Completa todos los campos.");
+    alert("Completa todos los campos del cliente");
     return;
   }
 
-  const { error } = await client
-    .from("cliente")
-    .insert([{ nombre, telefono, direccion }]);
+  const { error } = await client.from("cliente").insert([{ nombre, telefono, direccion }]);
 
   if (error) {
     console.log(error);
-    alert("Error al agregar cliente");
+    alert("Error al guardar cliente");
   } else {
+    document.getElementById("clienteNombre").value = "";
+    document.getElementById("clienteTelefono").value = "";
+    document.getElementById("clienteDireccion").value = "";
     cargarClientes();
   }
 }
@@ -190,46 +166,28 @@ async function editarCliente(id, nombre, telefono, direccion) {
     })
     .eq("idcliente", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al editar cliente");
-  } else {
-    cargarClientes();
-  }
+  if (error) console.log(error);
+  else cargarClientes();
 }
 
 async function eliminarCliente(id) {
   if (!confirm("¿Eliminar cliente?")) return;
 
-  const { error } = await client
-    .from("cliente")
-    .delete()
-    .eq("idcliente", id);
+  const { error } = await client.from("cliente").delete().eq("idcliente", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al eliminar cliente");
-  } else {
-    cargarClientes();
-  }
+  if (error) console.log(error);
+  else cargarClientes();
 }
 
 // PROVEEDORES
 async function cargarProveedores() {
-  const { data, error } = await client
-    .from("proveedor")
-    .select("*")
-    .order("idproveedor", { ascending: true });
+  const { data, error } = await client.from("proveedor").select("*").order("idproveedor");
 
-  if (error) {
-    console.log(error);
-    alert("Error al cargar proveedores");
-    return;
-  }
+  if (error) return console.log(error);
 
   proveedoresDiv.innerHTML = "";
 
-  data.forEach((p) => {
+  data.forEach(p => {
     proveedoresDiv.innerHTML += `
       <div class="item">
         <strong>${p.descripcion}</strong><br>
@@ -248,22 +206,22 @@ async function cargarProveedores() {
 }
 
 async function agregarProveedor() {
-  const descripcion = prompt("Proveedor:");
-  const tipo = prompt("Tipo:");
+  const descripcion = document.getElementById("proveedorDescripcion").value;
+  const tipo = document.getElementById("proveedorTipo").value;
 
   if (!descripcion || !tipo) {
-    alert("Completa todos los campos.");
+    alert("Completa todos los campos del proveedor");
     return;
   }
 
-  const { error } = await client
-    .from("proveedor")
-    .insert([{ descripcion, tipo }]);
+  const { error } = await client.from("proveedor").insert([{ descripcion, tipo }]);
 
   if (error) {
     console.log(error);
-    alert("Error al agregar proveedor");
+    alert("Error al guardar proveedor");
   } else {
+    document.getElementById("proveedorDescripcion").value = "";
+    document.getElementById("proveedorTipo").value = "";
     cargarProveedores();
   }
 }
@@ -282,46 +240,28 @@ async function editarProveedor(id, descripcion, tipo) {
     })
     .eq("idproveedor", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al editar proveedor");
-  } else {
-    cargarProveedores();
-  }
+  if (error) console.log(error);
+  else cargarProveedores();
 }
 
 async function eliminarProveedor(id) {
   if (!confirm("¿Eliminar proveedor?")) return;
 
-  const { error } = await client
-    .from("proveedor")
-    .delete()
-    .eq("idproveedor", id);
+  const { error } = await client.from("proveedor").delete().eq("idproveedor", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al eliminar proveedor");
-  } else {
-    cargarProveedores();
-  }
+  if (error) console.log(error);
+  else cargarProveedores();
 }
 
 // VENTAS
 async function cargarVentas() {
-  const { data, error } = await client
-    .from("ventas")
-    .select("*")
-    .order("idventa", { ascending: true });
+  const { data, error } = await client.from("ventas").select("*").order("idventa");
 
-  if (error) {
-    console.log(error);
-    alert("Error al cargar ventas");
-    return;
-  }
+  if (error) return console.log(error);
 
   ventasDiv.innerHTML = "";
 
-  data.forEach((v) => {
+  data.forEach(v => {
     ventasDiv.innerHTML += `
       <div class="item">
         <strong>Venta: ${v.noventa}</strong><br>
@@ -331,7 +271,7 @@ async function cargarVentas() {
         Impuesto: $${Number(v.impuesto).toFixed(2)}<br>
         Total: $${Number(v.total).toFixed(2)}<br><br>
 
-        <button class="editar" onclick="editarVenta(${v.idventa}, '${v.fecha}', '${v.noventa}', ${v.idcliente}, ${v.subtotal}, ${v.impuesto}, ${v.total})">
+        <button class="editar" onclick="editarVenta(${v.idventa}, '${v.fecha}', '${v.noventa}', ${v.idcliente}, ${v.subtotal})">
           Editar
         </button>
 
@@ -344,48 +284,42 @@ async function cargarVentas() {
 }
 
 async function agregarVenta() {
-  const fecha = prompt("Fecha (YYYY-MM-DD):");
-  const noventa = prompt("Número de venta:");
-  const idcliente = prompt("ID del cliente:");
-  const subtotal = prompt("Subtotal:");
-  const impuesto = prompt("Impuesto:");
-  const total = prompt("Total:");
+  const fecha = document.getElementById("ventaFecha").value;
+  const noventa = document.getElementById("ventaNumero").value;
+  const idcliente = document.getElementById("ventaCliente").value;
+  const subtotal = document.getElementById("ventaSubtotal").value;
 
-  if (!fecha || !noventa || !idcliente || !subtotal || !impuesto || !total) {
-    alert("Completa todos los campos.");
+  if (!fecha || !noventa || !idcliente || !subtotal) {
+    alert("Completa todos los campos de venta");
     return;
   }
 
-  const { error } = await client
-    .from("ventas")
-    .insert([
-      {
-        fecha,
-        noventa,
-        idcliente: Number(idcliente),
-        subtotal: Number(subtotal),
-        impuesto: Number(impuesto),
-        total: Number(total)
-      }
-    ]);
+  const { error } = await client.from("ventas").insert([{
+    fecha,
+    noventa,
+    idcliente: Number(idcliente),
+    subtotal: Number(subtotal)
+  }]);
 
   if (error) {
     console.log(error);
-    alert("Error al agregar venta");
+    alert("Error al guardar venta");
   } else {
+    document.getElementById("ventaFecha").value = "";
+    document.getElementById("ventaNumero").value = "";
+    document.getElementById("ventaCliente").value = "";
+    document.getElementById("ventaSubtotal").value = "";
     cargarVentas();
   }
 }
 
-async function editarVenta(id, fecha, noventa, idcliente, subtotal, impuesto, total) {
+async function editarVenta(id, fecha, noventa, idcliente, subtotal) {
   const nuevaFecha = prompt("Fecha:", fecha);
   const nuevaNoVenta = prompt("Número de venta:", noventa);
   const nuevoCliente = prompt("ID cliente:", idcliente);
   const nuevoSubtotal = prompt("Subtotal:", subtotal);
-  const nuevoImpuesto = prompt("Impuesto:", impuesto);
-  const nuevoTotal = prompt("Total:", total);
 
-  if (!nuevaFecha || !nuevaNoVenta || !nuevoCliente || !nuevoSubtotal || !nuevoImpuesto || !nuevoTotal) return;
+  if (!nuevaFecha || !nuevaNoVenta || !nuevoCliente || !nuevoSubtotal) return;
 
   const { error } = await client
     .from("ventas")
@@ -393,34 +327,21 @@ async function editarVenta(id, fecha, noventa, idcliente, subtotal, impuesto, to
       fecha: nuevaFecha,
       noventa: nuevaNoVenta,
       idcliente: Number(nuevoCliente),
-      subtotal: Number(nuevoSubtotal),
-      impuesto: Number(nuevoImpuesto),
-      total: Number(nuevoTotal)
+      subtotal: Number(nuevoSubtotal)
     })
     .eq("idventa", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al editar venta");
-  } else {
-    cargarVentas();
-  }
+  if (error) console.log(error);
+  else cargarVentas();
 }
 
 async function eliminarVenta(id) {
   if (!confirm("¿Eliminar venta?")) return;
 
-  const { error } = await client
-    .from("ventas")
-    .delete()
-    .eq("idventa", id);
+  const { error } = await client.from("ventas").delete().eq("idventa", id);
 
-  if (error) {
-    console.log(error);
-    alert("Error al eliminar venta");
-  } else {
-    cargarVentas();
-  }
+  if (error) console.log(error);
+  else cargarVentas();
 }
 
 // CARGAR TODO
