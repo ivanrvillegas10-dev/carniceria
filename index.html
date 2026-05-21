@@ -8,168 +8,162 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Montserrat",sans-serif;
+  background:#f4f4f4;
+  color:#222;
 }
 
-body {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  background: #f4f4f4;
-  color: #222;
+header{
+  background:#6b0000;
+  color:white;
+  padding:22px;
+  text-align:center;
 }
 
-header {
-  background: #6b0000;
-  color: white;
-  padding: 22px;
-  text-align: center;
+header h1{
+  margin:0;
+  font-size:38px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 38px;
-}
-
-.hero {
+.hero{
   background:
-    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
-    url("IMG_2475(1).jpeg");
-  background-size: cover;
-  background-position: center;
-  height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
+  linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+  url("IMG_2475(1).jpeg");
+  background-size:cover;
+  background-position:center;
+  height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-align:center;
 }
 
-.hero h2 {
-  font-size: 56px;
-  margin: 0 0 12px;
-  text-shadow: 0 4px 12px rgba(0,0,0,.6);
+.hero h2{
+  font-size:56px;
+  margin:0 0 12px;
+  text-shadow:0 4px 12px rgba(0,0,0,.6);
 }
 
-.hero p {
-  font-size: 22px;
-  margin: 0;
-  text-shadow: 0 3px 8px rgba(0,0,0,.6);
+.hero p{
+  font-size:22px;
+  margin:0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 35px 20px;
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px;
 }
 
-.section-title {
-  font-size: 30px;
-  color: #7a0000;
-  margin-top: 45px;
-  margin-bottom: 15px;
+.section-title{
+  font-size:30px;
+  color:#7a0000;
+  margin-top:45px;
 }
 
-.top-actions {
-  margin-bottom: 20px;
+.form-box{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+  margin-bottom:25px;
 }
 
-button {
-  border: none;
-  background: #8b0000;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: .2s;
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
 }
 
-button:hover {
-  transform: scale(1.03);
-  background: #5c0000;
+input{
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-family:"Montserrat",sans-serif;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
-  gap: 22px;
+button{
+  border:none;
+  background:#8b0000;
+  color:white;
+  padding:12px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  margin-top:8px;
 }
 
-.card {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+button:hover{
+  background:#5c0000;
 }
 
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  gap:22px;
 }
 
-.card-content {
-  padding: 18px;
-  text-align: center;
+.card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
 }
 
-.card h3 {
-  margin-top: 0;
-  color: #7a0000;
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
 }
 
-.price {
-  color: green;
-  font-size: 24px;
-  font-weight: 800;
+.card-content{
+  padding:18px;
+  text-align:center;
 }
 
-.card button {
-  width: 100%;
-  margin-top: 8px;
+.card h3{
+  color:#7a0000;
 }
 
-.editar {
-  background: #333;
+.price{
+  color:green;
+  font-size:24px;
+  font-weight:800;
 }
 
-.eliminar {
-  background: #d62828;
+.card button{
+  width:100%;
 }
 
-.lista {
-  background: white;
-  padding: 18px;
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0,0,0,.08);
+.editar{
+  background:#333;
 }
 
-.item {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+.eliminar{
+  background:#d62828;
 }
 
-.item:last-child {
-  border-bottom: none;
+.lista{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
-@media(max-width:768px) {
-  header h1 {
-    font-size: 28px;
-  }
+.item{
+  padding:12px;
+  border-bottom:1px solid #eee;
+}
 
-  .hero {
-    height: 360px;
-  }
-
-  .hero h2 {
-    font-size: 34px;
-  }
-
-  .hero p {
-    font-size: 18px;
-  }
+@media(max-width:768px){
+  header h1{font-size:28px}
+  .hero{height:360px}
+  .hero h2{font-size:34px}
 }
 </style>
 </head>
@@ -182,36 +176,57 @@ button:hover {
 
 <section class="hero">
   <div>
-    <h2>Productos frescos todos los días.</h2>
+    <h2>Productos frescos todos los días</h2>
     <p>Calidad premium para tu familia.</p>
   </div>
 </section>
 
 <div class="container">
 
-  <h2 class="section-title">Productos</h2>
-  <div class="top-actions">
-    <button onclick="agregarProducto()">Nuevo Producto</button>
+<h2 class="section-title">Productos</h2>
+<div class="form-box">
+  <div class="form-grid">
+    <input id="productoDescripcion" placeholder="Nombre del producto">
+    <input id="productoCosto" type="number" placeholder="Costo">
+    <input id="productoImagen" placeholder="Link de imagen">
+    <input id="productoProveedor" type="number" placeholder="ID proveedor">
   </div>
-  <div id="productos" class="grid"></div>
+  <button onclick="agregarProducto()">Guardar Producto</button>
+</div>
+<div id="productos" class="grid"></div>
 
-  <h2 class="section-title">Clientes</h2>
-  <div class="top-actions">
-    <button onclick="agregarCliente()">Nuevo Cliente</button>
+<h2 class="section-title">Clientes</h2>
+<div class="form-box">
+  <div class="form-grid">
+    <input id="clienteNombre" placeholder="Nombre">
+    <input id="clienteTelefono" placeholder="Teléfono">
+    <input id="clienteDireccion" placeholder="Dirección">
   </div>
-  <div id="clientes" class="lista"></div>
+  <button onclick="agregarCliente()">Guardar Cliente</button>
+</div>
+<div id="clientes" class="lista"></div>
 
-  <h2 class="section-title">Proveedores</h2>
-  <div class="top-actions">
-    <button onclick="agregarProveedor()">Nuevo Proveedor</button>
+<h2 class="section-title">Proveedores</h2>
+<div class="form-box">
+  <div class="form-grid">
+    <input id="proveedorDescripcion" placeholder="Proveedor">
+    <input id="proveedorTipo" placeholder="Tipo">
   </div>
-  <div id="proveedores" class="lista"></div>
+  <button onclick="agregarProveedor()">Guardar Proveedor</button>
+</div>
+<div id="proveedores" class="lista"></div>
 
-  <h2 class="section-title">Ventas</h2>
-  <div class="top-actions">
-    <button onclick="agregarVenta()">Nueva Venta</button>
+<h2 class="section-title">Ventas</h2>
+<div class="form-box">
+  <div class="form-grid">
+    <input id="ventaFecha" type="date">
+    <input id="ventaNumero" placeholder="Número de venta">
+    <input id="ventaCliente" type="number" placeholder="ID cliente">
+    <input id="ventaSubtotal" type="number" placeholder="Subtotal">
   </div>
-  <div id="ventas" class="lista"></div>
+  <button onclick="agregarVenta()">Guardar Venta</button>
+</div>
+<div id="ventas" class="lista"></div>
 
 </div>
 
