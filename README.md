@@ -27,3 +27,5 @@ Página web : https://ivanrvillegas10-dev.github.io/carniceria/￼
 
 Repositorio : https://github.com/ivanrvillegas10-dev/carniceria￼
 
+Enlace del repositorio central :
+https://github.com/gabrielhuav/DB-Coursework-2026-2
