@@ -20,5 +20,10 @@ La base de datos se realizó siguiendo estos pasos:
 3. Se definieron campos importantes como nombre del producto, precio, cantidad y total.
 4. Se utilizó Supabase para crear y administrar la base de datos.
 5. Se conectó la base de datos con una página web usando la API de Supabase.
-6. Se probaron consultas SQL para verificar que los datos se guardaran y mostraran correctamente.
-7. 
+
+🔗 Conexión de la aplicación
+
+Página web : https://ivanrvillegas10-dev.github.io/carniceria/￼
+
+Repositorio : https://github.com/ivanrvillegas10-dev/carniceria￼
+
