@@ -5,27 +5,82 @@ Para desarrollar la base de datos, primero se identificaron las necesidades prin
 La base de datos fue creada utilizando **Supabase**, una plataforma que permite almacenar datos en la nube y conectarlos con una página web mediante una API. Esto facilita que la información pueda consultarse, agregarse o actualizarse desde el sitio web.
 También se configuraron consultas SQL para revisar la información almacenada, como productos registrados, ventas realizadas y totales. Gracias a esta base de datos, la carnicería puede tener un mejor control de sus datos y mejorar la administración del negocio.
 
-## Base de datos Carnicería Camacho
+🛠️ Tecnologías
+Base de Datos: PostgreSQL (Supabase)
+Frontend: HTML, CSS y JavaScript Vanilla
+Backend: Supabase API REST y funciones SQL
+Seguridad: Row Level Security (RLS) y Policies
+Despliegue: GitHub Pages
+✨ Funcionalidades
+Gestión de productos (altas, consultas, modificaciones y bajas)
+Gestión de clientes
+Gestión de proveedores
+Registro y administración de ventas
+Operaciones CRUD completas
+Cálculo automático del impuesto (10%)
+Cálculo automático del total de venta
+Conexión en tiempo real con Supabase
+Interfaz web responsive
+Control de acceso mediante roles (Administrador y Profesor)
+Visualización de datos almacenados en la base de datos
+Integración mediante API REST proporcionada por Supabase
+ Verifica que funciona
 
-La base de datos de la carnicería **Camacho** fue creada para llevar un mejor control de los productos y ventas del negocio. Primero se identificó la información que era necesario guardar, como los nombres de los productos, precios, cantidades disponibles y ventas realizadas.
-Después se diseñaron tablas para organizar los datos de forma clara. La base de datos fue creada en **Supabase**, lo que permite almacenar la información en línea y conectarla con una página web mediante una API.
-Gracias a esta base de datos, el negocio puede administrar mejor su inventario, registrar ventas y consultar información importante de manera más rápida y ordenada.
+La aplicación se abrirá en tu navegador y mostrará la página principal de Carnicería Camacho conectada a Supabase.
 
-## ¿Cómo se hizo?
+https://ivanrvillegas10-dev.github.io/carniceria/
 
-La base de datos se realizó siguiendo estos pasos:
+🔗 Tablas principales
+Productos
+idproducto
+descripcion
+costo
+imagen
+idproveedor
+Clientes
+idcliente
+nombre
+telefono
+direccion
+Proveedores
+idproveedor
+descripcion
+tipo
+Ventas
+idventa
+fecha
+noventa
+idcliente
+subtotal
+impuesto
+total
+🔒 Seguridad
+Uso de anon public key de Supabase
+Protección mediante Row Level Security (RLS)
+Policies para controlar acceso a las tablas
+Roles de acceso:
+Administrador (control total)
+Profesor (solo lectura)
 
-1. Se analizó qué información necesitaba guardar la carnicería.
-2. Se crearon tablas para organizar los datos, como productos y ventas.
-3. Se definieron campos importantes como nombre del producto, precio, cantidad y total.
-4. Se utilizó Supabase para crear y administrar la base de datos.
-5. Se conectó la base de datos con una página web usando la API de Supabase.
+👥 Usuarios de acceso
 
-🔗 Conexión de la aplicación
+Usuario: profesor
+Contraseña: chocolate
+Permisos:
+Consultar productos, clientes, proveedores y ventas.
+Visualizar el funcionamiento general del sistema.
+No puede agregar, editar ni eliminar información.
 
-Página web : https://ivanrvillegas10-dev.github.io/carniceria/￼
+Esta implementación permite demostrar el funcionamiento del sistema sin comprometer la integridad de los datos almacenados en la base de datos.
 
-Repositorio : https://github.com/ivanrvillegas10-dev/carniceria￼
+🌐 Demo
 
-Enlace del repositorio central :
+Página Web:
+https://ivanrvillegas10-dev.github.io/carniceria/
+
+Repositorio GitHub:
+https://github.com/ivanrvillegas10-dev/carniceria
+
+Repositorio Central:
+
 https://github.com/gabrielhuav/DB-Coursework-2026-2
