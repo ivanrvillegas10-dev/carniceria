@@ -89,10 +89,13 @@ IMAGENES
 
 <img src="https://github.com/user-attachments/assets/35ec3b13-3e45-430f-b918-a2746ce77ecf" alt="Imagen 1" width="800"/>
 
-<img src="https://github.com/user-attachments/assets/288cf883-9485-49e2-8df8-5de2ba3c2fbd" alt="Imagen 2" width="800"/>
+<img src="https://github.com/user-attachments/assets/288cf883-9485-49e2-8df8-5de2ba3c2fdb" alt="Imagen 2" width="800"/>
 
-<img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-298096fb80af" alt="Imagen 3" width="800"/>
+<img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Imagen 3" width="800"/>
 
+<img src="https://github.com/user-attachments/assets/4df50bbf-3880-4449-a040-ab3f57b17bce" alt="Imagen 4" width="800"/>
+
+<img src="https://github.com/user-attachments/assets/b9b45dca-5a3e-4f94-94b1-6eec183b97a6" alt="Imagen 5" width="800"/>
 
 
 
