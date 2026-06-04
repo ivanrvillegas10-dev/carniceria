@@ -4,6 +4,8 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const { createClient } = supabase;
 const client = createClient(supabaseUrl, supabaseKey);
 
+let rolUsuario = "";
+
 const imagenDefault = "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f";
 
 const productosDiv = document.getElementById("productos");
@@ -11,9 +13,68 @@ const clientesDiv = document.getElementById("clientes");
 const proveedoresDiv = document.getElementById("proveedores");
 const ventasDiv = document.getElementById("ventas");
 
+function login() {
+  const usuario = document.getElementById("usuario").value;
+  const password = document.getElementById("password").value;
+
+  if (usuario === "admin" && password === "carniceria2025") {
+    rolUsuario = "admin";
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("rolTexto").innerText = "Administrador";
+    mostrarAdmin();
+    cargarTodo();
+  } else if (usuario === "profesor" && password === "chocolate") {
+    rolUsuario = "profesor";
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("rolTexto").innerText = "Profesor - Solo lectura";
+    ocultarAdmin();
+    cargarTodo();
+  } else {
+    alert("Usuario o contraseña incorrectos");
+  }
+}
+
+function cerrarSesion() {
+  rolUsuario = "";
+  document.getElementById("loginBox").style.display = "flex";
+  document.getElementById("rolTexto").innerText = "Sin iniciar sesión";
+  ocultarAdmin();
+
+  productosDiv.innerHTML = "";
+  clientesDiv.innerHTML = "";
+  proveedoresDiv.innerHTML = "";
+  ventasDiv.innerHTML = "";
+}
+
+function esAdmin() {
+  return rolUsuario === "admin";
+}
+
+function mostrarAdmin() {
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "block";
+  });
+}
+
+function ocultarAdmin() {
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "none";
+  });
+}
+
+function cargarTodo() {
+  cargarProductos();
+  cargarClientes();
+  cargarProveedores();
+  cargarVentas();
+}
+
 // PRODUCTOS
 async function cargarProductos() {
-  const { data, error } = await client.from("productos").select("*").order("idproducto");
+  const { data, error } = await client
+    .from("productos")
+    .select("*")
+    .order("idproducto", { ascending: true });
 
   if (error) return console.log(error);
 
@@ -27,6 +88,7 @@ async function cargarProductos() {
           <h3>${p.descripcion}</h3>
           <p class="price">$${Number(p.costo).toFixed(2)}</p>
 
+          ${esAdmin() ? `
           <button class="editar" onclick="editarProducto(${p.idproducto}, '${p.descripcion}', ${p.costo})">
             Editar
           </button>
@@ -34,6 +96,7 @@ async function cargarProductos() {
           <button class="eliminar" onclick="eliminarProducto(${p.idproducto})">
             Eliminar
           </button>
+          ` : ""}
         </div>
       </div>
     `;
@@ -41,6 +104,11 @@ async function cargarProductos() {
 }
 
 async function agregarProducto() {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede agregar productos.");
+    return;
+  }
+
   const descripcion = document.getElementById("productoDescripcion").value;
   const costo = document.getElementById("productoCosto").value;
   const imagen = document.getElementById("productoImagen").value;
@@ -71,6 +139,11 @@ async function agregarProducto() {
 }
 
 async function editarProducto(id, descripcion, costo) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede editar productos.");
+    return;
+  }
+
   const nuevaDescripcion = prompt("Nueva descripción:", descripcion);
   const nuevoCosto = prompt("Nuevo costo:", costo);
 
@@ -89,6 +162,11 @@ async function editarProducto(id, descripcion, costo) {
 }
 
 async function eliminarProducto(id) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede eliminar productos.");
+    return;
+  }
+
   if (!confirm("¿Eliminar producto?")) return;
 
   const { error } = await client
@@ -102,7 +180,10 @@ async function eliminarProducto(id) {
 
 // CLIENTES
 async function cargarClientes() {
-  const { data, error } = await client.from("cliente").select("*").order("idcliente");
+  const { data, error } = await client
+    .from("cliente")
+    .select("*")
+    .order("idcliente", { ascending: true });
 
   if (error) return console.log(error);
 
@@ -115,6 +196,7 @@ async function cargarClientes() {
         Teléfono: ${c.telefono}<br>
         Dirección: ${c.direccion}<br><br>
 
+        ${esAdmin() ? `
         <button class="editar" onclick="editarCliente(${c.idcliente}, '${c.nombre}', '${c.telefono}', '${c.direccion}')">
           Editar
         </button>
@@ -122,12 +204,18 @@ async function cargarClientes() {
         <button class="eliminar" onclick="eliminarCliente(${c.idcliente})">
           Eliminar
         </button>
+        ` : ""}
       </div>
     `;
   });
 }
 
 async function agregarCliente() {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede agregar clientes.");
+    return;
+  }
+
   const nombre = document.getElementById("clienteNombre").value;
   const telefono = document.getElementById("clienteTelefono").value;
   const direccion = document.getElementById("clienteDireccion").value;
@@ -151,6 +239,11 @@ async function agregarCliente() {
 }
 
 async function editarCliente(id, nombre, telefono, direccion) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede editar clientes.");
+    return;
+  }
+
   const nuevoNombre = prompt("Nombre:", nombre);
   const nuevoTelefono = prompt("Teléfono:", telefono);
   const nuevaDireccion = prompt("Dirección:", direccion);
@@ -171,9 +264,17 @@ async function editarCliente(id, nombre, telefono, direccion) {
 }
 
 async function eliminarCliente(id) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede eliminar clientes.");
+    return;
+  }
+
   if (!confirm("¿Eliminar cliente?")) return;
 
-  const { error } = await client.from("cliente").delete().eq("idcliente", id);
+  const { error } = await client
+    .from("cliente")
+    .delete()
+    .eq("idcliente", id);
 
   if (error) console.log(error);
   else cargarClientes();
@@ -181,7 +282,10 @@ async function eliminarCliente(id) {
 
 // PROVEEDORES
 async function cargarProveedores() {
-  const { data, error } = await client.from("proveedor").select("*").order("idproveedor");
+  const { data, error } = await client
+    .from("proveedor")
+    .select("*")
+    .order("idproveedor", { ascending: true });
 
   if (error) return console.log(error);
 
@@ -193,6 +297,7 @@ async function cargarProveedores() {
         <strong>${p.descripcion}</strong><br>
         Tipo: ${p.tipo}<br><br>
 
+        ${esAdmin() ? `
         <button class="editar" onclick="editarProveedor(${p.idproveedor}, '${p.descripcion}', '${p.tipo}')">
           Editar
         </button>
@@ -200,12 +305,18 @@ async function cargarProveedores() {
         <button class="eliminar" onclick="eliminarProveedor(${p.idproveedor})">
           Eliminar
         </button>
+        ` : ""}
       </div>
     `;
   });
 }
 
 async function agregarProveedor() {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede agregar proveedores.");
+    return;
+  }
+
   const descripcion = document.getElementById("proveedorDescripcion").value;
   const tipo = document.getElementById("proveedorTipo").value;
 
@@ -227,6 +338,11 @@ async function agregarProveedor() {
 }
 
 async function editarProveedor(id, descripcion, tipo) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede editar proveedores.");
+    return;
+  }
+
   const nuevaDescripcion = prompt("Proveedor:", descripcion);
   const nuevoTipo = prompt("Tipo:", tipo);
 
@@ -245,9 +361,17 @@ async function editarProveedor(id, descripcion, tipo) {
 }
 
 async function eliminarProveedor(id) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede eliminar proveedores.");
+    return;
+  }
+
   if (!confirm("¿Eliminar proveedor?")) return;
 
-  const { error } = await client.from("proveedor").delete().eq("idproveedor", id);
+  const { error } = await client
+    .from("proveedor")
+    .delete()
+    .eq("idproveedor", id);
 
   if (error) console.log(error);
   else cargarProveedores();
@@ -255,7 +379,10 @@ async function eliminarProveedor(id) {
 
 // VENTAS
 async function cargarVentas() {
-  const { data, error } = await client.from("ventas").select("*").order("idventa");
+  const { data, error } = await client
+    .from("ventas")
+    .select("*")
+    .order("idventa", { ascending: true });
 
   if (error) return console.log(error);
 
@@ -271,6 +398,7 @@ async function cargarVentas() {
         Impuesto: $${Number(v.impuesto).toFixed(2)}<br>
         Total: $${Number(v.total).toFixed(2)}<br><br>
 
+        ${esAdmin() ? `
         <button class="editar" onclick="editarVenta(${v.idventa}, '${v.fecha}', '${v.noventa}', ${v.idcliente}, ${v.subtotal})">
           Editar
         </button>
@@ -278,12 +406,18 @@ async function cargarVentas() {
         <button class="eliminar" onclick="eliminarVenta(${v.idventa})">
           Eliminar
         </button>
+        ` : ""}
       </div>
     `;
   });
 }
 
 async function agregarVenta() {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede agregar ventas.");
+    return;
+  }
+
   const fecha = document.getElementById("ventaFecha").value;
   const noventa = document.getElementById("ventaNumero").value;
   const idcliente = document.getElementById("ventaCliente").value;
@@ -314,6 +448,11 @@ async function agregarVenta() {
 }
 
 async function editarVenta(id, fecha, noventa, idcliente, subtotal) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede editar ventas.");
+    return;
+  }
+
   const nuevaFecha = prompt("Fecha:", fecha);
   const nuevaNoVenta = prompt("Número de venta:", noventa);
   const nuevoCliente = prompt("ID cliente:", idcliente);
@@ -336,16 +475,20 @@ async function editarVenta(id, fecha, noventa, idcliente, subtotal) {
 }
 
 async function eliminarVenta(id) {
+  if (!esAdmin()) {
+    alert("Solo el administrador puede eliminar ventas.");
+    return;
+  }
+
   if (!confirm("¿Eliminar venta?")) return;
 
-  const { error } = await client.from("ventas").delete().eq("idventa", id);
+  const { error } = await client
+    .from("ventas")
+    .delete()
+    .eq("idventa", id);
 
   if (error) console.log(error);
   else cargarVentas();
 }
 
-// CARGAR TODO
-cargarProductos();
-cargarClientes();
-cargarProveedores();
-cargarVentas();
+ocultarAdmin();
