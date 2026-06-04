@@ -14,6 +14,8 @@ const proveedoresDiv = document.getElementById("proveedores");
 const ventasDiv = document.getElementById("ventas");
 
 function login() {
+  console.log("Login ejecutado");
+  
   const usuario = document.getElementById("usuario").value;
   const password = document.getElementById("password").value;
 
