@@ -195,19 +195,6 @@ Permisos:
 * Visualizar el funcionamiento general del sistema.
 * No puede agregar, editar ni eliminar información.
 
-Administrador
-
-Usuario: admin
-Contraseña: carniceria2025
-
-Permisos:
-
-* Agregar registros.
-* Editar registros.
-* Eliminar registros.
-* Visualizar toda la información del sistema.
-
-Esta implementación permite demostrar el funcionamiento del sistema sin comprometer la integridad de los datos almacenados en la base de datos.
 
 🌐 Demo
 
