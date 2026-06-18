@@ -126,18 +126,19 @@ Al abrir la aplicación en el navegador, se muestra la página principal de **Ca
 Desde la página web se pueden visualizar los datos almacenados en la base de datos y comprobar el funcionamiento de las operaciones principales del sistema.
 
 ---
+📸 Capturas del Proyecto
 
-## 📸 Imágenes del proyecto
+Página Principal
 
-<img src="https://github.com/user-attachments/assets/35ec3b13-3e45-430f-b918-a2746ce77ecf" alt="Imagen 1" width="800"/>
+<img src="https://github.com/user-attachments/assets/35ec3b13-3e45-430f-b918-a2746ce77ecf" alt="Página principal" width="800"/>
 
-<img src="https://github.com/user-attachments/assets/288cf883-9485-49e2-8df8-5de2ba3c2fdb" alt="Imagen 2" width="800"/>
+Gestión de Registros
 
-<img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Imagen 3" width="800"/>
+<img src="https://github.com/user-attachments/assets/288cf883-9485-49e2-8df8-5de2ba3c2fdb" alt="Gestión de registros" width="800"/>
 
-<img src="https://github.com/user-attachments/assets/4df50bbf-3880-4449-a040-ab3f57b17bce" alt="Imagen 4" width="800"/>
+Base de Datos Conectada
 
-<img src="https://github.com/user-attachments/assets/b9b45dca-5a3e-4f94-94b1-6eec183b97a6" alt="Imagen 5" width="800"/>
+<img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Base de datos conectada" width="800"/>
 
 
 
