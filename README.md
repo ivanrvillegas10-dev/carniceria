@@ -221,11 +221,13 @@ https://github.com/ivanrvillegas10-dev/carniceria
 
 📸 Capturas del Proyecto
 
-Página Principal
-
-Gestión de Registros
-
-Base de Datos Conectada
+<details>
+<summary>🖼️ Ver capturas de pantalla</summary>
+<br>
+<img src="https://github.com/user-attachments/assets/35ec3b13-3e45-430f-b918-a2746ce77ecf" alt="Página principal" width="800"/>
+<img src="https://github.com/user-attachments/assets/288cf883-9485-49e2-8df8-5de2ba3c2fdb" alt="Gestión de registros" width="800"/>
+<img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Base de datos conectada" width="800"/>
+</details>
 
 
 
