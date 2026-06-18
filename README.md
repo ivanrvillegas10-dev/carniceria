@@ -140,7 +140,9 @@ Base de Datos Conectada
 
 <img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Base de datos conectada" width="800"/>
 
+<img src="https://github.com/user-attachments/assets/4df50bbf-3880-4449-a040-ab3f57b17bce" alt="Imagen 4" width="800"/>
 
+<img src="https://github.com/user-attachments/assets/b9b45dca-5a3e-4f94-94b1-6eec183b97a6" alt="Imagen 5" width="800"/>
 
 
 
