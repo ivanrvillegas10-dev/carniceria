@@ -141,7 +141,91 @@ Base de Datos Conectada
 <img src="https://github.com/user-attachments/assets/cf3d4ac4-8aa1-4345-84a8-29809fb580af" alt="Base de datos conectada" width="800"/>
 
 
+🥩 Proyecto 21: Carnicería Camacho (Sistema de Gestión de Carnicería)
 
+Plataforma web desarrollada para la administración integral de una carnicería, permitiendo gestionar productos, clientes, proveedores y ventas mediante una interfaz conectada a una base de datos en la nube. El sistema facilita la organización de la información, automatiza procesos administrativos y mejora el control de inventario y ventas.
+
+🛠️ Tecnologías
+
+* Frontend: HTML5, CSS3 y JavaScript Vanilla.
+* Backend / Base de Datos: Supabase (PostgreSQL + API REST).
+* Seguridad: Row Level Security (RLS) y Policies.
+* Funciones SQL: Triggers y procedimientos almacenados para automatizar cálculos.
+* Despliegue: GitHub Pages.
+
+✨ Funcionalidades
+
+* Gestión de productos.
+* Gestión de clientes.
+* Gestión de proveedores.
+* Registro y administración de ventas.
+* Operaciones CRUD completas (Crear, Leer, Actualizar y Eliminar).
+* Cálculo automático del impuesto (10%).
+* Cálculo automático del total de venta.
+* Conexión en tiempo real con Supabase.
+* Interfaz web responsive.
+* Control de acceso mediante roles (Administrador y Profesor).
+* Visualización de datos almacenados en la base de datos.
+* Integración mediante API REST proporcionada por Supabase.
+
+🚀 Verifica que funciona
+
+La aplicación se encuentra disponible en:
+
+🔗 https://ivanrvillegas10-dev.github.io/carniceria/
+
+🔒 Seguridad
+
+* Uso de la Anon Public Key de Supabase para la conexión desde el frontend.
+* Protección mediante Row Level Security (RLS).
+* Policies para controlar el acceso a los datos.
+* Restricción de operaciones según el rol del usuario.
+* Comunicación segura entre la página web y la base de datos.
+
+👥 Usuarios de Acceso
+
+Profesor (Modo demostración)
+
+Usuario: profesor
+Contraseña: chocolate
+
+Permisos:
+
+* Consultar productos, clientes, proveedores y ventas.
+* Visualizar el funcionamiento general del sistema.
+* No puede agregar, editar ni eliminar información.
+
+Administrador
+
+Usuario: admin
+Contraseña: carniceria2025
+
+Permisos:
+
+* Agregar registros.
+* Editar registros.
+* Eliminar registros.
+* Visualizar toda la información del sistema.
+
+Esta implementación permite demostrar el funcionamiento del sistema sin comprometer la integridad de los datos almacenados en la base de datos.
+
+🌐 Demo
+
+Página Web
+
+https://ivanrvillegas10-dev.github.io/carniceria/
+
+Repositorio GitHub
+
+https://github.com/ivanrvillegas10-dev/carniceria
+
+📸 Capturas del Proyecto
+
+Página Principal
+
+Gestión de Registros
+
+Base de Datos Conectada
 
 
 
